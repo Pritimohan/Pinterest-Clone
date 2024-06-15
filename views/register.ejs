@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../stylesheets/register.css">
+  <title>register</title>
+</head>
+
+<body>
+  <div class="container">
+    <% if(error.length>0){ %>
+      <div class="errormsg"><%= error %></div>
+    <% } %>
+    <div class="content">
+      <!--pinterest logo-->
+      <img src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png" alt="pin logo"
+        class="img1"  width="70px"/>
+      <p class="header">Register to see more</p>
+      <form action="/users/register" method="post">
+        <input type="text" name="username" id="username" class="detail" placeholder="Username" />
+        <input type="email" name="email" id="email" class="detail" placeholder="Email" />
+        <input type="text" name="fullname" id="fullname" class="detail" placeholder="Fullname" />
+        <input type="password" name="password" id="password" class="detail" placeholder="Create Password" />
+
+        <button type="submit" class="btn int">Continue</button>
+      </form>
+      <a href="">Forgot your password?</a>
+
+      <!-- <p class="or">OR</p>
+        <button class="btn fbk">
+          <i
+            class="fab fa-facebook fa-lg"
+            style="color: white; padding-right: 10px"
+          ></i
+          ><a href="#">Continue with Facebook</a></button
+        ><br />
+        <button class="btn ggl">
+          <i
+            class="fab fa-google"
+            style="color: rgb(11, 241, 22); padding-right: 10px"
+          ></i
+          ><a href="#">Continue with Google</a>
+        </button> -->
+
+      <footer>
+        <p>
+          By continuing, you agree to Pinterest's
+          <b>Terms of Service, Privacy policy.</b>
+        </p>
+        <hr />
+        <p> Already Pinterest yet? <a href="/login">Login</a></p>
+      </footer>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/feed.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Feed</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="logo">
+            <a href="/feed"><i class="fa-brands fa-pinterest"></i></a>
+        </div>
+        <div class="navbtns">
+            <i class="fa-solid fa-magnifying-glass searchbtn"></i>
+            <a href="/profile" class="profilebtn">
+                <div class="img"><img src="/images/upload/dp/<%= dp %>" alt=""></div>
+                <%=username %>
+            </a>
+        </div>
+    </div>
+    <section class="postssection">
+        <% post.reverse().map((post)=>{%>
+            <div class="box">
+                <div class="user">
+                    <a href="/profile/<%=post.user._id%>/<%=post.user.username%>">
+                        <img src="/images/upload/dp/<%=post.user.dp%>" alt="">
+                        <p>
+                            <%=post.user.username%>
+                        </p>
+                    </a>
+                </div>
+                <img src="/images/upload/<%=post.image%>" alt="image" width="200px">
+                <h2>
+                    <%= post.postTitle %>
+                </h2>
+                <p>
+                    <%= post.description %>
+                </p>
+            </div>
+            <% }) %>
+    </section>
+
+
+</body>
+
+</html>

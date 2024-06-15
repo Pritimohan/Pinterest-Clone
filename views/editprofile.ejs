@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/editprofile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Edit Profile</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="/feed"><i class="fa-brands fa-pinterest"></i></a>
+        </div>
+        <div class="navbtns">
+            <i class="fa-solid fa-magnifying-glass searchbtn"></i>
+            <a href="/profile" class="profilebtn">
+                <div class="navimg"><img src="/images/upload/dp/<%= dp %>" alt=""></div>
+                <%=username %>
+            </a>
+        </div>
+    </div>
+    <section class="mainsectio">
+        <div class="box">
+            <h2>Edit Profile</h2>
+            <p>Keep your personal details private. Information you add here is visible to anyone who can view your
+                profile.</p>
+            <label for="img">Photo</label>
+            <div class="img" name="img">
+                <img src="/images/upload/dp/<%= dp %>" alt="" width="200px">
+            </div>
+
+            <form action="/users/editprofile" method="post" class="editform">
+                <label for="fullname">Full Name</label>
+                <input type="text" name="fullname" placeholder="Full Name" class="detail" value="<%= fullname %>">
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Username" class="detail" value="<%= username %>">
+                <label for="about">About (max 40)</label>
+                <input type="text" name="about" placeholder="About" class="detail" maxlength="40" value="<%= about %>">
+                <button type="submit" class="btn" id="savebtn">Save</button>
+            </form>
+            <div class="delete">
+                <p>We're sorry to see you go. Deleting your account will permanently erase all your data and content
+                    associated with it. This action cannot be reversed, and you will lose access to all your
+                    information. If you have any concerns or need help, please reach out to our support team before
+                    taking this step.</p>
+                <a href="/deleteaccount"><button class="btn deletebtn">Delelte Account</button></a>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+    <!-- <script>
+        const saveBtn = document.querySelector("#savebtn")
+        const detail = document.querySelectorAll(".detail")
+
+        detail.forEach((e) => {
+            e.addEventListener("change", (e) => {
+                console.log(e);
+                saveBtn.style.display = e.data !== null ? "block" : "none";
+            })
+        })
+    </script> -->
+</body>
+
+</html>

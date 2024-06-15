@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/uploadpost.css">
+    <title>Post upload</title>
+</head>
+
+<body>
+    <div class="main">
+        <form action="/users/uploadpost" method="post" enctype="multipart/form-data" class="formbox">
+            <input type="file" name="post" id="post">
+            <input type="text" name="postTitle" id="postTitle" placeholder="Title"  class="detail">
+            <input type="text" name="description" id="description" placeholder="Description" maxlength="30" class="detail">
+            <button type="submit" class="btn">Upload</button>
+        </form>
+    </div>
+</body>
+
+</html>

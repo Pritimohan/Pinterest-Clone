@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/viewersideprofile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Profile</title>
+</head>
+
+<body>
+    <div class="setdp" id="setdp">
+        <i class="fa-solid fa-xmark" id="closebtn"></i>
+        <form id="setdpform" action="/users/setdp" method="post" enctype="multipart/form-data">
+            <input type="file" name="dp">
+        </form>
+    </div>
+
+    <div class="header">
+        <div class="logo">
+            <a href="/feed"><i class="fa-brands fa-pinterest"></i></a>
+        </div>
+        <div class="navbtns">
+            <a href="/logout"><button class="redbtn">Logout</button></a>
+        </div>
+    </div>
+    <div class="container" id="container">
+        <div class="about">
+            <div class="coverphoto">
+            </div>
+            <div class="profilephoto" id="profilephoto">
+                <img src="/images/upload/dp/<%= dp %>" alt="">
+            </div>
+            <div class="profileinfo">
+                <h1>
+                    <%= fullname %>
+                </h1>
+                <p>@<%=username%>
+                </p>
+                <p>
+                    <%= about %>
+                </p>
+            </div>
+        </div>
+        <div class="collections">
+            <% post.reverse().map(item=> { %>
+                <div class="box">
+                    <img src="/images/upload/<%=item.image%>" alt="" width="200px">
+                    <h2>
+                        <%= item.postTitle %>
+                    </h2>
+                    <p>
+                        <%= item.description %>
+                    </p>
+                </div>
+                <% }); %>
+        </div>
+</body>
+
+</html>
