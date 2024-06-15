@@ -17,7 +17,7 @@
         </div>
         <div class="navbtns">
             <i class="fa-solid fa-magnifying-glass searchbtn"></i>
-            <a href="/profile" class="profilebtn">
+            <a href="/profile?username=<%= username %>" class="profilebtn">
                 <div class="img"><img src="/images/upload/dp/<%= dp %>" alt=""></div>
                 <%=username %>
             </a>
@@ -27,7 +27,7 @@
         <% post.reverse().map((post)=>{%>
             <div class="box">
                 <div class="user">
-                    <a href="/profile/<%=post.user._id%>/<%=post.user.username%>">
+                    <a href="/profile?username=<%= post.user.username %>">
                         <img src="/images/upload/dp/<%=post.user.dp%>" alt="">
                         <p>
                             <%=post.user.username%>

@@ -34,9 +34,17 @@ router.get("/profile", isLoggedIn, async (req, res) => {
   const userData = await userModels.findOne({
     email: req.session.passport.user
   }).populate("post")
-  const { username, email, fullname, dp, post, about } = userData
-  res.render("profile", { username: username, email: email, fullname: fullname, dp: dp, post: post, about: about });
-});
+
+  if (userData.username==req.query.username){
+    const { username, email, fullname, dp, post, about } = userData
+    res.render("profile", { username: username, email: email, fullname: fullname, dp: dp, post: post, about: about });
+  }
+  else{
+    const Data = await userModels.findOne({ username: req.query.username }).populate("post")
+    const { username, email, fullname, dp, post, about } = Data
+   res.render("viewersideprofile", { username: username, email: email, fullname: fullname, dp: dp, post: post, about: about } )
+  }
+  });
 
 router.get("/uploadpost", isLoggedIn, (req, res) => {
   res.render("uploadpost")
@@ -46,7 +54,7 @@ router.get("/feed", isLoggedIn, async (req, res) => {
   const postData = await postmodels.find({}).populate("user")
   const userData = await userModels.findOne({ email: req.session.passport.user })
   const { dp, username, _id } = userData
-  res.render("feed", { post: postData, dp: dp, username: username, })
+  res.render("feed", { post: postData, dp: dp, username: username,id:_id })
 })
 
 router.get("/editprofile", isLoggedIn, async (req, res) => {
@@ -69,17 +77,6 @@ router.get("/deleteaccount", isLoggedIn, async (req, res) => {
   } catch (error) {
     if (error) throw error;
   }
-})
-
-router.get("/profile/:userid/:username", isLoggedIn, async (req, res) => {
-  const userData = await userModels.findOne({ _id: req.params.userid }).populate("post")
-  const { username, email, fullname, dp, post, about } = userData
-if (userData.email==req.session.passport.user){
-  res.redirect("/profile")
-}
-else{
- res.render("viewersideprofile", { username: username, email: email, fullname: fullname, dp: dp, post: post, about: about } )
-}
 })
 
 function isLoggedIn(req, res, next) {
