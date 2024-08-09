@@ -16,6 +16,7 @@ A feature-rich clone of Pinterest that allows users to upload and share images, 
 ## Technologies Used
 
 - **Frontend**:
+
   - **EJS**: Templating engine for rendering HTML views.
   - **CSS**: For styling and layout.
 
@@ -38,34 +39,39 @@ A feature-rich clone of Pinterest that allows users to upload and share images, 
 ### Setup
 
 1. **Clone the Repository**
+
    ```bash
    git clone https://github.com/Pritimohan/Pinterest-Clone.git
    cd Pinterest-Clone
+   ```
 
-    ```
 2. **Install Dependencies**
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 3. **Set Environment Variables**
-    Create a `.env` file in the root directory of the project. Add the following environment variables:
-    ```env
+   Create a `.env` file in the root directory of the project. Add the following environment variables:
 
-    MONGO_URI=your-mongodb-uri
-    SESSION_SECRET=your-session-secret
-    ```
+   ```env
+   MONGO_URI=your-mongodb-uri
+   SESSION_SECRET=your-session-secret
+   ```
+
 4. **Start the Server**
-    ```bash
-    npm start
-    ```
+   ```bash
+   npm start
+   ```
 5. **Visit the Application**
-    Open `http://localhost:3000` in your browser.
+   Open `http://localhost:3000` in your browser.
 
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## Screenshots
+## Video Demo
+
+- [Watch the video-1](https://www.linkedin.com/posts/pritimohan-shit_techinnovation-newfeatures-activity-7207476061054406656-dGT6?utm_source=share&utm_medium=member_desktop)
+- [Watch the video-2](https://www.linkedin.com/posts/pritimohan-shit_webdevelopment-fullstack-nodejs-activity-7204407246825349120-sXR-?utm_source=share&utm_medium=member_desktop)
 
 ## Acknowledgements
 
@@ -81,6 +87,4 @@ Special thanks to the open-source community for creating and maintaining these i
 
 ## Author
 
-- Pritimohan Shit
-```
-
+- [Pritimohan Shit]
