@@ -7,6 +7,7 @@ const userModels = require("../models/usermodels");
 const postmodels = require("../models/postmodels");
 const fs = require("fs");
 const { userInfo } = require("os");
+
 connectDb(); //connecting to database
 
 /* GET home page. */
@@ -47,7 +48,8 @@ router.get("/profile", isLoggedIn, async (req, res) => {
   });
 
 router.get("/uploadpost", isLoggedIn, (req, res) => {
-  res.render("uploadpost")
+  const err = req.flash("error")
+  res.render("uploadpost" , {error:err})
 })
 
 router.get("/feed", isLoggedIn, async (req, res) => {

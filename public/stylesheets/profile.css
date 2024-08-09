@@ -169,6 +169,7 @@ a {
   overflow: hidden;
   position: relative;
 }
+
 .box > p {
   width: fit-content;
   font-size: 0.7rem;

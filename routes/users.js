@@ -11,9 +11,9 @@ const { log } = require("console");
 const fs = require("fs");
 const { ifError } = require("assert");
 
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
+    console.log(req);
     if (file.fieldname === "dp") {
       cb(null, "public/images/upload/dp")
     }
@@ -26,7 +26,6 @@ const storage = multer.diskStorage({
     cb(null, `${uuidv4()}-${fileType}`);
   }
 })
-
 const upload = multer({ storage })
 
 passport.use(
@@ -50,7 +49,8 @@ router.post("/register", async (req, res) => {
     });
   } catch (error) {
     // Handle the error appropriately (e.g., send an error response to the client)
-    res.status(400).send(error.message);
+ req.flash("error", error.message)
+ res.redirect("/register")
   }
 });
 
@@ -64,15 +64,22 @@ router.post("/login", passport.authenticate("local", {
 );
 
 router.post("/uploadpost", isLoggedIn, upload.single("post"), async (req, res) => {
-  const { postTitle, description } = req.body
-  const userData = await userModels.findOne({ email: req.session.passport.user })
-  const postData = await postModel.create({
-    postTitle, description, image: req.file.filename, user: userData._id
-  })
-  userData.post.push(postData._id)
-  await userData.save()
-  // console.log(req.file);
-  res.redirect("/profile")
+  try {
+    const { postTitle, description } = req.body
+    if (!req.file){
+      throw new Error("Please upload a file")
+    }
+    const userData = await userModels.findOne({ email: req.session.passport.user })
+    const postData = await postModel.create({ postTitle, description, image: req.file.filename, user: userData._id })
+    userData.post.push(postData._id)
+    await userData.save()
+    // console.log(req.file);
+    res.redirect(`/profile?username=${userData.username}`)
+  } catch (error) {
+    req.flash("error", error.message)
+    res.redirect("/uploadpost")
+  }
+
 })
 
 router.post("/setdp", isLoggedIn, upload.single("dp"), async (req, res) => {
@@ -86,12 +93,13 @@ router.post("/setdp", isLoggedIn, upload.single("dp"), async (req, res) => {
     })
   }
 
-  res.redirect("/profile")
+  res.redirect(`/profile?username=${userData.username}`)
 })
 router.post("/editprofile", isLoggedIn, async (req, res) => {
+  const userData = await userModels.findOne({ email: req.session.passport.user })
   const { fullname, username, about } = req.body;
   await userModels.findOneAndUpdate({ email: req.session.passport.user }, { fullname, username, about })
-  res.redirect("/profile")
+  res.redirect(`/profile?username=${userData.username}`)
 })
 router.post("/editpost", isLoggedIn, (req, res) => {
   console.log(req.body);

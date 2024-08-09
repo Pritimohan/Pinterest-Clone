@@ -141,13 +141,13 @@ hr {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 200px;
-  height: 50px;
-  padding: 0px 30px;
-  background-color: #e71b22;
+  max-width: 300px;
+  max-height: 300px;
+  padding: 10px 30px;
+  background-color: white;
   position: absolute;
   top: 30px;
   right: 50px;
-  color: white;
-  border-radius: 50px;
+  color:#f30d19;
+  border-radius: 100px;
 }
