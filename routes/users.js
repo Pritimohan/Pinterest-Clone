@@ -45,7 +45,7 @@ router.post("/register", async (req, res) => {
   try {
     const registeredUser = await userModels.register(userData, password);
     passport.authenticate("local")(req, res, () => {
-      res.redirect("/");
+      res.redirect("/login");
     });
   } catch (error) {
     // Handle the error appropriately (e.g., send an error response to the client)
