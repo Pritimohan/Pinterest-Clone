@@ -75,7 +75,7 @@ router.get("/deleteaccount", isLoggedIn, async (req, res) => {
       })
     });
     await userModels.deleteOne({ email: req.session.passport.user })
-    res.redirect("/editprofile")
+    res.redirect("/register")
   } catch (error) {
     if (error) throw error;
   }
