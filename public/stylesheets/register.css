@@ -151,3 +151,34 @@ hr {
   color:#f30d19;
   border-radius: 100px;
 }
+@media (max-width: 480px) {
+  .container {
+    width: 90%;
+    height:fit-content;
+  }
+
+  .header {
+    font-size: 24px;
+  }
+
+  .detail {
+    height: 42px;
+    font-size: 14px;
+  }
+
+  .btn {
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .upbtn {
+    position: relative;
+    top: 20px;
+    left: auto;
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 150px;
+    font-size: 14px;
+  }
+}

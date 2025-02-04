@@ -17,7 +17,8 @@
                 class="img1" width="70px" />
             <p class="header">Log in to see more</p>
             <% if(error.length> 0) {%>
-                <p class="error">Your <%= error %></p>
+                <p class="error">Your <%= error %>
+                </p>
                 <% } %>
                     <form action="/users/login" method="post">
                         <input type="email" placeholder="Email" class="detail" name="email" /><br />

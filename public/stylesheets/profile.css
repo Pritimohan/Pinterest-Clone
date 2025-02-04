@@ -248,3 +248,80 @@ a {
 .roundbtn:hover {
   background-color: #d8191f;
 }
+
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0px 15px;
+    height: 7%;
+  }
+  .btn, .redbtn {
+    height: 35px;
+    font-size: 0.8rem;
+  }
+  .coverphoto {
+    height: 250px;
+  }
+  .profilephoto {
+    top: 200px;
+    height: 80px;
+    width: 80px;
+  }
+  .collections {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  }
+}
+.profileinfo{
+  margin-top: 30px;
+}
+.about{
+  min-height: fit-content;
+}
+.collections{
+  margin: 0px;
+  background-color: #d8191f;
+}
+
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 0px 10px;
+    height: 6%;
+  }
+  .navbtns {
+    gap: 5px;
+  }
+  .btn, .redbtn {
+    height: 30px;
+    font-size: 0.7rem;
+    padding: 0px 10px;
+  }
+  .container {
+    padding: 10px;
+  }
+  .coverphoto {
+   width: 90vw;
+  }
+  .profilephoto {
+    top: 210px;
+    height: 70px;
+    width: 70px;
+  }
+
+  .box {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
