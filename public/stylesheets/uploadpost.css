@@ -84,3 +84,11 @@ html , body{
     font-size: 1rem;
     text-align: center;
   }
+
+  @media (max-width: 768px) {
+    .formbox{
+      gap: 3px;
+      width: 90%;
+      height: fit-content;
+    }
+  }

@@ -21,4 +21,12 @@ postEditBtn.forEach((e) => {
     })
       
     })
+ window.addEventListener("load", function () {
+        const boxes = document.querySelectorAll(".box");
+        boxes.forEach((box) => {
+          const rowSpan = Math.ceil(box.clientHeight / 10); // Adjust span based on height
+          box.style.gridRowEnd = `span ${rowSpan}`;
+        });
+      });
+      
 

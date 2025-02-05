@@ -23,8 +23,8 @@ i {
   align-items: center;
   justify-content: space-between;
   /* border: solid red; */
-  height: 10vh;
-  padding: 0px 50px;
+  height: fit-content;
+  padding: 10px 50px;
 }
 .logo > a > i {
   flex-grow: 1;
@@ -89,7 +89,7 @@ i {
   gap: 20px;
   /* border: solid red; */
 }
-.mainsectio {
+.mainsection {
   width: 100%;
   min-height: 100vh;
   padding: 60px 40px 40px 300px;
@@ -164,3 +164,16 @@ label {
   margin-top: 15px;
   font-size: 0.9rem;
 }
+
+@media screen and (max-width: 768px) {
+  .header{
+    padding: 10px 20px;
+    position:sticky;
+    }
+.mainsection{
+ padding: 0px;
+ display: flex;
+ justify-content: center;
+}
+}
+

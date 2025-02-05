@@ -151,9 +151,11 @@ hr {
   color:#f30d19;
   border-radius: 100px;
 }
-@media (max-width: 480px) {
+
+
+@media (max-width: 768px) {
   .container {
-    width: 90%;
+    min-width: 90%;
     height:fit-content;
   }
 

@@ -152,6 +152,10 @@ width: fit-content;
   border-radius: 15px;
 }
 
+@media  screen and  (max-width: 768px) {
+  
+  
+}
 
 
 
