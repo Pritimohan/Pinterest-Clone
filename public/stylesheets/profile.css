@@ -143,7 +143,6 @@ a {
 }
 .profileinfo {
   display: flex;
-  padding-top: 20px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -257,6 +256,10 @@ a {
   .header {
     padding: 10px 15px;
   }
+  .container{
+    justify-content: flex-start;
+    gap:20px
+  }
   .btn,
   .redbtn {
     height: 35px;
@@ -271,7 +274,7 @@ a {
     width: 80px;
   }
   .profileinfo {
-    margin-top: 15px;
+    margin-top: 30px;
   }
   .about {
     min-height: fit-content;

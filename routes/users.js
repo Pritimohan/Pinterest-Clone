@@ -4,29 +4,14 @@ var router = express.Router();
 const userModels = require("../models/usermodels");
 const postModel = require("../models/postmodels")
 const localStrategy = require("passport-local");
-const multer = require("multer");
-const path = require("path")
-const { v4: uuidv4 } = require("uuid");
-const { log } = require("console");
+const e = require("connect-flash");
 const fs = require("fs");
-const { ifError } = require("assert");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    console.log(req);
-    if (file.fieldname === "dp") {
-      cb(null, "public/images/upload/dp")
-    }
-    else if (file.fieldname === "post") {
-      cb(null, 'public/images/upload')
-    }
-  },
-  filename: function (req, file, cb) {
-    const fileType = path.extname(file.originalname)
-    cb(null, `${uuidv4()}-${fileType}`);
-  }
-})
-const upload = multer({ storage })
+const upload = require("../middlewares/multer.js")
+const { uploadToCloudinary } = require("../utils/cloudinaryConfig.js");
+const { deleteFileFromServer } = require("../utils/deleteFileFromServer.js");
+
+
 
 passport.use(
   new localStrategy({ usernameField: "email" }, userModels.authenticate())
@@ -49,8 +34,8 @@ router.post("/register", async (req, res) => {
     });
   } catch (error) {
     // Handle the error appropriately (e.g., send an error response to the client)
- req.flash("error", error.message)
- res.redirect("/register")
+    req.flash("error", error.message)
+    res.redirect("/register")
   }
 });
 
@@ -66,16 +51,20 @@ router.post("/login", passport.authenticate("local", {
 router.post("/uploadpost", isLoggedIn, upload.single("post"), async (req, res) => {
   try {
     const { postTitle, description } = req.body
-    if (!req.file){
+    const imageURL = await uploadToCloudinary(req.file.path);
+    if (!req.file) {
       throw new Error("Please upload a file")
+    } else if (imageURL.err) {
+      throw new Error("Error in uploading")
     }
     const userData = await userModels.findOne({ email: req.session.passport.user })
-    const postData = await postModel.create({ postTitle, description, image: req.file.filename, user: userData._id })
+    const postData = await postModel.create({ postTitle, description, image: imageURL, user: userData._id })
     userData.post.push(postData._id)
     await userData.save()
-    // console.log(req.file);
+    deleteFileFromServer(req.file?.path) // delete the file from the server
     res.redirect(`/profile?username=${userData.username}`)
   } catch (error) {
+    deleteFileFromServer(req.file?.path) // delete the file from the server
     req.flash("error", error.message)
     res.redirect("/uploadpost")
   }
